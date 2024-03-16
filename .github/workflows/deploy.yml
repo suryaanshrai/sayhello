@@ -8,9 +8,6 @@ jobs:
   deploy:
     runs-on: ubuntu-latest  
 
-    secrets:
-      SSH_KEY: ${{ secrets.SSH_KEY }}
-
     steps:
       - uses: actions/checkout@v3  
 
