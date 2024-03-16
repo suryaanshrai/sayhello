@@ -1,0 +1,40 @@
+name: Deploy to VM
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest  
+
+    secrets:
+      SSH_KEY: ${{ secrets.SSH_KEY }}
+
+    steps:
+      - uses: actions/checkout@v3  
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+
+      - name: Deploy to VM
+        uses: ssh-actions/deploy@v2 
+        with:
+          host: ${{ secrets.VM_HOST }}  
+          user: ${{ secrets.VM_USER }}  
+          private-key: ${{ secrets.SSH_KEY }}  
+          # script: |  
+          #   mv build/ /var/www/html/
+
+      - name: Notify on failure
+        uses: actions/github-script@v6
+        if: failure()
+        with:
+          script: |
+            github.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: "Deployment failed!"
+            })
