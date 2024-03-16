@@ -21,8 +21,8 @@ jobs:
       - name: Deploy to VM
         uses: ssh-actions/deploy@v2 
         with:
-          host: ${{ secrets.VM_HOST }}  
-          user: ${{ secrets.VM_USER }}  
+          host: ${{ secrets.HOST }}  
+          user: ${{ secrets.USERNAME }}  
           private-key: ${{ secrets.SSH_KEY }}  
           # script: |  
           #   mv build/ /var/www/html/
