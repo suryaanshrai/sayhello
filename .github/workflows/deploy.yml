@@ -18,10 +18,10 @@ jobs:
       - name: Deploy to VM
         uses: easingthemes/ssh-deploy@v5.0.3
         with:
-          host: ${{ secrets.HOST }}  
-          user: ${{ secrets.USERNAME }}  
-          ssh-key: ${{ secrets.SSH_KEY }}  
-          script: | 
+          REMOTE_HOST: ${{ secrets.HOST }}  
+          REMOTE_USER: ${{ secrets.USERNAME }}  
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_KEY }}  
+          SCRIPT_AFTER: | 
             git clone https://github.com/suryaanshrai/sayhello.git
             pip install -r requirements.txt
             sudo python3 manage.py runserver 80
