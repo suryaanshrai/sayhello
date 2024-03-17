@@ -17,8 +17,7 @@ jobs:
           REMOTE_HOST: ${{ secrets.HOST }}  
           REMOTE_USER: ${{ secrets.USERNAME }}  
           SSH_PRIVATE_KEY: ${{ secrets.SSH_KEY }}  
-          SCRIPT_BEFORE: | 
-            bash start.sh
+          SCRIPT_AFTER: start.sh
 
       - name: Notify on failure
         uses: actions/github-script@v6
