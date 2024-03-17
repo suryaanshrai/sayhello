@@ -24,7 +24,7 @@ jobs:
           SCRIPT_AFTER: | 
             git clone https://github.com/suryaanshrai/sayhello.git
             pip install -r requirements.txt
-            sudo python3 manage.py runserver 80
+            sudo python3 manage.py runserver
 
       - name: Notify on failure
         uses: actions/github-script@v6
