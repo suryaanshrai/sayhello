@@ -1,3 +1,4 @@
+#!/bin/bash
 git clone https://github.com/suryaanshrai/sayhello.git
 pip install -r requirements.txt
 sudo kill `sudo lsof -t -i :80` 
