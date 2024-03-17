@@ -21,9 +21,7 @@ jobs:
           host: ${{ secrets.HOST }}  
           user: ${{ secrets.USERNAME }}  
           private-key: ${{ secrets.SSH_KEY }}  
-          # script: |  
-          #   mv build/ /var/www/html/
-
+          # script: | 
       - name: Notify on failure
         uses: actions/github-script@v6
         if: failure()
