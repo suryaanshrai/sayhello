@@ -21,7 +21,11 @@ jobs:
           host: ${{ secrets.HOST }}  
           user: ${{ secrets.USERNAME }}  
           private-key: ${{ secrets.SSH_KEY }}  
-          # script: | 
+          script: | 
+            git clone https://github.com/suryaanshrai/sayhello.git
+            pip install -r requirements.txt
+            sudo python3 manage.py runserver 80
+
       - name: Notify on failure
         uses: actions/github-script@v6
         if: failure()
