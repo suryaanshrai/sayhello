@@ -18,10 +18,7 @@ jobs:
           REMOTE_USER: ${{ secrets.USERNAME }}  
           SSH_PRIVATE_KEY: ${{ secrets.SSH_KEY }}  
           SCRIPT_BEFORE: | 
-            git clone https://github.com/suryaanshrai/sayhello.git
-            pip install -r requirements.txt
-            sudo kill `sudo lsof -t -i :80` 
-            sudo python3 manage.py runserver 80 > logs&
+            bash start.sh
 
       - name: Notify on failure
         uses: actions/github-script@v6
