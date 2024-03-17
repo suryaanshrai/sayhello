@@ -9,18 +9,18 @@ jobs:
     runs-on: ubuntu-latest  
 
     steps:
-      - uses: actions/checkout@v3  
+      - uses: actions/checkout@v4
 
       - name: Install dependencies
         run: |
           pip install -r requirements.txt
 
       - name: Deploy to VM
-        uses: actions/checkout@v4
+        uses: ssh-actions/deploy@v2
         with:
           host: ${{ secrets.HOST }}  
           user: ${{ secrets.USERNAME }}  
-          private-key: ${{ secrets.SSH_KEY }}  
+          ssh-key: ${{ secrets.SSH_KEY }}  
           script: | 
             git clone https://github.com/suryaanshrai/sayhello.git
             pip install -r requirements.txt
