@@ -14,6 +14,7 @@ jobs:
       - name: Install dependencies
         run: |
           pip install -r requirements.txt
+          sudo apt install gunicorn
 
       - name: Deploy to VM
         uses: easingthemes/ssh-deploy@v5.0.3
@@ -25,7 +26,7 @@ jobs:
             git clone https://github.com/suryaanshrai/sayhello.git
             pip install -r requirements.txt
             sudo kill `sudo lsof -t -i :80` 
-            curl http://127.0.0.1:8000/sayhello
+            curl http://127.0.0.1:80/sayhello
             gunicorn --config gunicorn.conf sayhello.wsgi:application
 
       - name: Notify on failure
