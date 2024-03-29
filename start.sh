@@ -1,3 +1,4 @@
-git fetch
-git checkout main
-git stash
+#! /bin/bash
+git fetch origin main
+git reset --hard origin/master
+git clean -fdx
