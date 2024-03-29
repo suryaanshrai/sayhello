@@ -11,13 +11,19 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
       - name: Deploy to VM
         uses: easingthemes/ssh-deploy@v5.0.3
         with:
           REMOTE_HOST: ${{ secrets.HOST }}  
           REMOTE_USER: ${{ secrets.USERNAME }}  
           SSH_PRIVATE_KEY: ${{ secrets.SSH_KEY }}  
-          SCRIPT_AFTER: bash start.sh
+        run: |
+          git fetch
+          git checkout main
+          git stash
 
       - name: Notify on failure
         uses: actions/github-script@v6
