@@ -25,8 +25,15 @@ def sayhello(request):
         "message":"Hello User"
     })
 
+def sayhelloworld(request):
+    return JsonResponse({
+        "message":"Hello World"
+    })
+
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('sayhello',sayhello),
+    path('sayhelloworld',sayhelloworld),
 ]
